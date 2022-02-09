@@ -1,6 +1,8 @@
 ﻿/* TEST PLAN
  
- 
+ Constructor
+    matrix != null
+    matrix == 3x3
  
  Equals
     1 == 1
@@ -14,10 +16,17 @@
 
 namespace BankOcrTests
 {
+    using System;
     using Xunit;
 
     public class AsciiDigitTests
     {
+        [Fact]
+        public void Constructor_NullMatrix_ThrowsException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new AsciiDigit(null));
+        }
+        
         [Fact]
         public void Equals_OneEqualsOne()
         {
@@ -71,6 +80,18 @@ namespace BankOcrTests
             
             Assert.NotEqual(expected, actual);
         }
+        
+        [Fact]
+        public void Equals_OneNotEqualsNull()
+        {
+            var expected = new AsciiDigit(new char[3,3] {
+                {' ', ' ' ,' '},
+                {' ', ' ', '|'},
+                {' ', ' ', '|'}
+            });
+            
+            Assert.False(expected.Equals(null));
+        }
     }
 
     public class AsciiDigit
@@ -79,6 +100,11 @@ namespace BankOcrTests
         
         public AsciiDigit(char[,] matrix)
         {
+            if (matrix == null)
+            {
+                throw new ArgumentNullException(nameof(matrix));
+            }
+            
             this.matrix = matrix;
         }
 
