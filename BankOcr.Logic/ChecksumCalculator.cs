@@ -1,4 +1,4 @@
-﻿namespace BankOcrTests
+﻿namespace BankOcr.Logic
 {
     public class ChecksumCalculator
     {

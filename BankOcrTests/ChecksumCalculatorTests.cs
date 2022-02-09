@@ -7,6 +7,7 @@
 
 namespace BankOcrTests
 {
+    using BankOcr.Logic;
     using Xunit;
     
     public class ChecksumCalculatorTests
