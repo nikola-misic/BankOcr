@@ -5,6 +5,70 @@
 
     public class AsciiDigit
     {
+        public static AsciiDigit One => new AsciiDigit(new char[,]
+        {
+            { ' ', ' ', ' ' },
+            { ' ', ' ', '|' },
+            { ' ', ' ', '|' }
+        });
+
+        public static AsciiDigit Two => new AsciiDigit(new char[,]
+        {
+            { ' ', '_', ' ' },
+            { ' ', '_', '|' },
+            { '|', '_', ' ' }
+        });
+
+        public static AsciiDigit Three => new AsciiDigit(new char[,]
+        {
+            { ' ', '_', ' ' },
+            { ' ', '_', '|' },
+            { ' ', '_', '|' }
+        });
+
+        public static AsciiDigit Four => new AsciiDigit(new char[,]
+        {
+            { ' ', ' ', ' ' },
+            { '|', '_', '|' },
+            { ' ', ' ', '|' }
+        });
+
+        public static AsciiDigit Five => new AsciiDigit(new char[,]
+        {
+            { ' ', '_', ' ' },
+            { '|', '_', ' ' },
+            { ' ', '_', '|' }
+        });
+
+        public static AsciiDigit Six => new AsciiDigit(new char[,]
+        {
+            { ' ', '_', ' ' },
+            { '|', '_', ' ' },
+            { '|', '_', '|' }
+        });
+
+        public static AsciiDigit Seven => new AsciiDigit(new char[,]
+        {
+            { ' ', '_', ' ' },
+            { ' ', ' ', '|' },
+            { ' ', ' ', '|' }
+        });
+
+        public static AsciiDigit Eight => new AsciiDigit(new char[,]
+        {
+            { ' ', '_', ' ' },
+            { '|', '_', '|' },
+            { '|', '_', '|' }
+        });
+
+        public static AsciiDigit Nine => new AsciiDigit(new char[,]
+        {
+            { ' ', '_', ' ' },
+            { '|', '_', '|' },
+            { ' ', '_', '|' }
+        });
+        
+        
         private readonly char[,] matrix;
         
         public AsciiDigit(char[,] matrix)

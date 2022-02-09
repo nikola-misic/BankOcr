@@ -7,59 +7,15 @@
     {
         private readonly Dictionary<AsciiDigit, string> digitMap = new Dictionary<AsciiDigit, string>
         {
-            { new AsciiDigit(new char[,] {
-                {' ', ' ' ,' '},
-                {' ', ' ', '|'},
-                {' ', ' ', '|'}
-            }), "1"},
-            
-            { new AsciiDigit(new char[,] {
-                {' ', '_' ,' '},
-                {' ', '_', '|'},
-                {'|', '_', ' '}
-            }), "2"},
-            
-            { new AsciiDigit(new char[,] {
-                {' ', '_' ,' '},
-                {' ', '_', '|'},
-                {' ', '_', '|'}
-            }), "3"},
-            
-            { new AsciiDigit(new char[,] {
-                {' ', ' ' ,' '},
-                {'|', '_', '|'},
-                {' ', ' ', '|'}
-            }), "4"},
-            
-            { new AsciiDigit(new char[,] {
-                {' ', '_' ,' '},
-                {'|', '_', ' '},
-                {' ', '_', '|'}
-            }), "5"},
-            
-            { new AsciiDigit(new char[,] {
-                {' ', '_' ,' '},
-                {'|', '_', ' '},
-                {'|', '_', '|'}
-            }), "6"},
-            
-            { new AsciiDigit(new char[,] {
-                {' ', '_' ,' '},
-                {' ', ' ', '|'},
-                {' ', ' ', '|'}
-            }), "7"},
-            
-            { new AsciiDigit(new char[,] {
-                {' ', '_' ,' '},
-                {'|', '_', '|'},
-                {'|', '_', '|'}
-            }), "8"},
-            
-            { new AsciiDigit(new char[,] {
-                {' ', '_' ,' '},
-                {'|', '_', '|'},
-                {' ', '_', '|'}
-            }), "9"},
+            { AsciiDigit.One, "1"},
+            { AsciiDigit.Two, "2"},
+            { AsciiDigit.Three, "3"},
+            { AsciiDigit.Four, "4"},
+            { AsciiDigit.Five, "5"},
+            { AsciiDigit.Six, "6"},
+            { AsciiDigit.Seven, "7"},
+            { AsciiDigit.Eight, "8"},
+            { AsciiDigit.Nine, "9"}
         };
 
 
