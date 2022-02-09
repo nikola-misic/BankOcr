@@ -9,14 +9,18 @@
     3 == 3
     1 != 2
     1 != null
+    
  GetHashCode
- 
+    1 == 1
+    3 == 3
+    1 != 2
  
  */
 
 namespace BankOcrTests
 {
     using System;
+    using System.Text;
     using Xunit;
 
     public class AsciiDigitTests
@@ -98,11 +102,65 @@ namespace BankOcrTests
             
             Assert.False(expected.Equals(null));
         }
+        
+        [Fact]
+        public void GetHashCode_OneEqualsOne()
+        {
+            var expected = new AsciiDigit(new char[3,3] {
+                {' ', ' ' ,' '},
+                {' ', ' ', '|'},
+                {' ', ' ', '|'}
+            });
+            
+            var actual = new AsciiDigit(new char[3,3] {
+                {' ', ' ' ,' '},
+                {' ', ' ', '|'},
+                {' ', ' ', '|'}
+            });
+            
+            Assert.Equal(expected.GetHashCode(), actual.GetHashCode());
+        }
+        
+        [Fact]
+        public void GetHashCode_ThreeEqualsThree()
+        {
+            var expected = new AsciiDigit(new char[3,3] {
+                {' ', '_' ,' '},
+                {' ', '_', '|'},
+                {' ', '_', '|'}
+            });
+            
+            var actual = new AsciiDigit(new char[3,3] {
+                {' ', '_' ,' '},
+                {' ', '_', '|'},
+                {' ', '_', '|'}
+            });
+            
+            Assert.Equal(expected.GetHashCode(), actual.GetHashCode());
+        }
+        
+        [Fact]
+        public void GetHashCode_OneNotEqualsTwo()
+        {
+            var expected = new AsciiDigit(new char[3,3] {
+                {' ', ' ' ,' '},
+                {' ', ' ', '|'},
+                {' ', ' ', '|'}
+            });
+            
+            var actual = new AsciiDigit(new char[3,3] {
+                {' ', '_' ,' '},
+                {' ', '_', '|'},
+                {'|', '_', ' '}
+            });
+            
+            Assert.NotEqual(expected.GetHashCode(), actual.GetHashCode());
+        }
     }
 
     public class AsciiDigit
     {
-        private char[,] matrix;
+        private readonly char[,] matrix;
         
         public AsciiDigit(char[,] matrix)
         {
@@ -130,9 +188,9 @@ namespace BankOcrTests
         {
             if (obj is AsciiDigit other)
             {
-                for (int i = 0; i < matrix.Rank + 1; i++)
+                for (int i = 0; i < matrix.GetLength(0); i++)
                 {
-                    for (int j = 0; j < (matrix.Length / (matrix.Rank + 1)); j++)
+                    for (int j = 0; j < matrix.GetLength(1); j++)
                     {
                         if (this.matrix[i, j] != other.matrix[i, j])
                         {
@@ -145,6 +203,20 @@ namespace BankOcrTests
             }
 
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    sb.Append(matrix[i, j]);
+                }
+            }
+
+            return sb.ToString().GetHashCode();
         }
     }
 
