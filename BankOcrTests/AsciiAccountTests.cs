@@ -53,6 +53,44 @@
                 
             Assert.Equal(expected, actual);
         }
+        
+        [Fact]
+        public void DigitAt_PositionFive_ReturnsCorrectDigit()
+        {
+            var lineOne =   "*************** _ *********";
+            var lineTwo =   "***************|_|*********";
+            var lineThree = "***************|_|*********";
+
+            var expected = new AsciiDigit(new char[,]
+            {
+                { ' ', '_', ' ' },
+                { '|', '_', '|' },
+                { '|', '_', '|' }
+            });
+
+            var actual = new AsciiAccount(lineOne, lineTwo, lineThree).DigitAt(5);
+                
+            Assert.Equal(expected, actual);
+        }
+        
+        [Fact]
+        public void DigitAt_PositionNine_ReturnsCorrectDigit()
+        {
+            var lineOne =   "************************ _ ";
+            var lineTwo =   "************************  |";
+            var lineThree = "************************  |";
+
+            var expected = new AsciiDigit(new char[,]
+            {
+                { ' ', '_', ' ' },
+                { ' ', ' ', '|' },
+                { ' ', ' ', '|' }
+            });
+
+            var actual = new AsciiAccount(lineOne, lineTwo, lineThree).DigitAt(8);
+                
+            Assert.Equal(expected, actual);
+        }
     }
 
 
@@ -86,11 +124,12 @@
 
         public AsciiDigit DigitAt(int position)
         {
+            int offset = position * 3;
             return new AsciiDigit(new char[3,3]
             {
-                {lineOne[0], lineOne[1], lineOne[2]},
-                {lineTwo[0], lineTwo[1], lineTwo[2]},
-                {lineThree[0], lineThree[1], lineThree[2]}
+                {lineOne[offset], lineOne[1+offset], lineOne[2+offset]},
+                {lineTwo[offset], lineTwo[1+offset], lineTwo[2+offset]},
+                {lineThree[offset], lineThree[1+offset], lineThree[2+offset]}
             });
         }
     }
