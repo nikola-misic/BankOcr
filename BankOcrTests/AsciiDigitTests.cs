@@ -28,6 +28,12 @@ namespace BankOcrTests
         }
         
         [Fact]
+        public void Constructor_MatrixWithMoreRows_ThrowsException()
+        {
+            Assert.Throws<InvalidDigitSizeException>(() => new AsciiDigit(new char[2,4]));
+        }
+        
+        [Fact]
         public void Equals_OneEqualsOne()
         {
             var expected = new AsciiDigit(new char[3,3] {
@@ -104,6 +110,11 @@ namespace BankOcrTests
             {
                 throw new ArgumentNullException(nameof(matrix));
             }
+
+            if (matrix.GetLength(0) != 3 || matrix.GetLength(1) != 3)
+            {
+                throw new InvalidDigitSizeException(matrix.GetLength(0), matrix.GetLength(1));
+            }
             
             this.matrix = matrix;
         }
@@ -134,6 +145,14 @@ namespace BankOcrTests
             }
 
             return false;
+        }
+    }
+
+    public class InvalidDigitSizeException : Exception
+    {
+        public InvalidDigitSizeException(int rows, int columns)
+        : base($"Invalid matrix size {rows}x{columns}")
+        {
         }
     }
 }
